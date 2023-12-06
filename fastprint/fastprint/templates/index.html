@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Programmer - Rizki Aprita</title>
+</head>
+<body>
+    <div id="root">
+        <table border="1">
+            <thead>
+                <tr>
+                    {% for column_name in column_names %}
+                        <th>{{ column_name|title }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+    <script>
+        const data = JSON.parse('{{ data|safe }}');
+        const tableBody = document.getElementById('tableBody');
+
+        // Iterate through the data and create table rows
+        data.forEach(product => {
+            const row = document.createElement('tr');
+
+            // Iterate through the properties of each product and create cells
+            for (const key in product.fields) {
+                if (product.fields.hasOwnProperty(key) && key !== 'created_at' && key !== 'updated_at') {
+                    const cell = document.createElement('td');
+                    cell.textContent = product.fields[key];
+                    row.appendChild(cell);
+                }
+            }
+
+            tableBody.appendChild(row);
+        });
+    </script>
+</body>
+</html>
