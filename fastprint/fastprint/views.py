@@ -96,7 +96,7 @@ def index(request):
     statusFromDB = Status.objects.all()
 
     for item in products_list:
-        item['fields']['id'] = item['pk']  # Add the 'id' field manually
+        item['fields']['id'] = item['pk']
         item['fields']['kategori'] = categoriesFromDB.get(id_kategori=item['fields']['kategori_id']).nama_kategori
         item['fields']['status'] = statusFromDB.get(id_status=item['fields']['status_id']).nama_status
         item['fields'].pop('kategori_id', None)
