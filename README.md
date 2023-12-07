@@ -31,7 +31,15 @@ ALTER ROLE rizkiaprita SET timezone TO 'UTC';
 GRANT ALL PRIVILEGES ON DATABASE django TO rizkiaprita;
 \q
 ```
-## 3. Migrate the model into the database
+## 3. Create the environtment and install the requiremtns
+```bash
+cd ~/fastprint
+python -m venv venv
+.\venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+## 4. Migrate the model into the database
 ```bash
 cd ~/fastprint
 python manage.py makemigrations
@@ -45,7 +53,7 @@ python manage.py migrate
 
 type `1` on your terminal and then press `enter`
 
-## 4. Run the development server
+## 5. Run the development server
 ```python
 python manage.py runserver
 ```
