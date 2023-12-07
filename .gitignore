@@ -1,0 +1,61 @@
+# Virtual environment
+venv/
+env/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local development settings
+*.sqlite3
+*.pyc
+*.pyo
+
+# Media files
+media/
+
+# Static files
+staticfiles/
+
+# Log files
+*.log
+
+# Ignore secret configuration file
+*.secret
+
+# Ignore database configuration
+*.db
+
+# Ignore migration files
+*.py[mc]
+
+# Ignore local settings
+local_settings.py
+
+# Ignore IDE configuration
+.idea/
+.vscode/
+
+# Ignore pycache folders and files
+__pycache__/
+*.pyc
+
+# Ignore macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Ignore compiled Python files
+*.pyc
+
+# Ignore Python cache files
+__pycache__/
+
+# Ignore Jupyter Notebook files
+.ipynb_checkpoints/
+
+# Ignore pipenv virtual environment
+Pipfile
+Pipfile.lock
