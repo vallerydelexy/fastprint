@@ -31,7 +31,7 @@ ALTER ROLE rizkiaprita SET timezone TO 'UTC';
 GRANT ALL PRIVILEGES ON DATABASE django TO rizkiaprita;
 \q
 ```
-## 3. Create the environtment and install the requiremtns
+## 3. Create the environtment and install the requirements
 ```bash
 cd fastprint
 python -m venv venv
