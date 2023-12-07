@@ -15,7 +15,7 @@ class Categories(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 class Products(models.Model):
-    id_produk = models.CharField(max_length=30, primary_key=True, unique=True, editable=False)
+    id_produk = models.CharField(max_length=30, primary_key=True, unique=True)
     nama_produk = models.CharField(max_length=255)
     harga = models.DecimalField(max_digits=30, decimal_places=2)
     kategori_id = models.ForeignKey(Categories, on_delete=models.CASCADE)

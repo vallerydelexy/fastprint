@@ -95,6 +95,9 @@ def index(request):
     categoriesFromDB = Categories.objects.all()
     statusFromDB = Status.objects.all()
 
+    # check product list is not empty
+    if len(products_list) == 0:
+        return render(request, 'index.html')
     for item in products_list:
         item['fields']['id'] = item['pk']
         item['fields']['kategori'] = categoriesFromDB.get(id_kategori=item['fields']['kategori_id']).nama_kategori
@@ -115,7 +118,7 @@ def index(request):
 def deleteProduct(request, id):
     product = Products.objects.get(id_produk=id)
     product.delete()
-    return HttpResponse(status=200, content='OK')
+    return HttpResponse(status=200, content='Product deleted<br><a href="/">Back</a>')
     pass
 
 def editProduct(request, id):
@@ -124,9 +127,21 @@ def editProduct(request, id):
         form = ProductForm(request.POST, instance=product)
         if form.is_valid():
             form.save()
-            return HttpResponse(status=200, content='Product updated successfully')
+            return HttpResponse(status=200, content='Product updated<br><a href="/">Back</a>')
     else:
         form = ProductForm(instance=product)
 
-    return render(request, 'edit_product.html', {'form': form})
+    return render(request, 'product_form.html', {'form': form})
+    pass
+
+def addProduct(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=200, content='Product added<br><a href="/">Back</a>')
+    else:
+        form = ProductForm()
+
+    return render(request, 'product_form.html', {'form': form})
     pass
