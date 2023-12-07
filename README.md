@@ -16,6 +16,7 @@ my portfolio: [https://aprita.web.id](https://aprita.web.id)
 ```bash
 sudo apt update
 sudo apt install git python3-pip python3-dev libpq-dev postgresql postgresql-contrib
+git clone https://github.com/vallerydelexy/fastprint.git
 ```
 ## 2. Create a Database and Database User
 ```bash
