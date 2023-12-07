@@ -12,16 +12,23 @@
             <thead>
                 <tr>
                     {% for column_name in column_names %}
-                        <th>{{ column_name|title }}</th>
+                        {% if column_name != 'id' %}
+                            <th>{{ column_name|title }}</th>
+                        {% endif %}
                     {% endfor %}
+                    <th colspan="2">Action</th>
                 </tr>
             </thead>
             <tbody id="tableBody"></tbody>
         </table>
+        <a href="/add">Add Product</a>
+        <a href="/get">Get Products from api</a>
     </div>
     <script>
         const data = JSON.parse('{{ data|safe }}');
         const tableBody = document.getElementById('tableBody');
+        const actions = ["edit", "delete"];
+        const button = document.createElement('button');
 
         // Iterate through the data and create table rows
         data.forEach(product => {
@@ -29,12 +36,33 @@
 
             // Iterate through the properties of each product and create cells
             for (const key in product.fields) {
-                if (product.fields.hasOwnProperty(key) && key !== 'created_at' && key !== 'updated_at') {
+                if (product.fields.hasOwnProperty(key) && key !== 'id') {
                     const cell = document.createElement('td');
                     cell.textContent = product.fields[key];
                     row.appendChild(cell);
                 }
             }
+            // add edit and delete button
+            actions.forEach(action => {
+                const cell = document.createElement('td');
+                const button = document.createElement('button');
+                if (action === 'delete') {
+                    button.addEventListener('click', () => {
+                        if (confirm(`Are you sure you want to delete ${product.fields.nama_produk}?`)) {
+                            window.location.href = `/${action}/${product.pk}`;
+                        }
+                    });
+                } else {
+                    button.addEventListener('click', () => {
+                        window.location.href = `/${action}/${product.pk}`;
+                    });
+                }
+
+                button.textContent = action;
+                cell.appendChild(button);
+                row.appendChild(cell);
+            });
+
 
             tableBody.appendChild(row);
         });
